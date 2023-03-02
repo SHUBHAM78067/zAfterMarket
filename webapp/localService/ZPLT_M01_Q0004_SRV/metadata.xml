@@ -1,0 +1,110 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='GW_BW_TRUST')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPLT_M01_Q0004_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ZPLT_M01_Q0004Result" sap:label="SER: Active Population Dealer Codes UI(5)" sap:semantics="aggregate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:filterable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TotaledProperties" Type="Edm.String" sap:aggregation-role="totaled-properties-list" sap:is-annotation="true" sap:updatable="false" sap:label="Total/Subtotal" sap:sortable="false"/>
+                <Property Name="A0COUNTRY" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:text="A0COUNTRY_T" sap:label="Country" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0COUNTRY_T" Type="Edm.String" MaxLength="20" sap:label="Country (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="A0REGION" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:super-ordinate="A0COUNTRY" sap:text="A0REGION_T" sap:label="Region" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0REGION_T" Type="Edm.String" MaxLength="20" sap:label="Region (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="A0PLANT" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:text="A0PLANT_T" sap:label="Dealer Code" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0PLANT_T" Type="Edm.String" MaxLength="20" sap:label="Dealer Code (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ZREGNGRP_T" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:text="" sap:label="Region Group" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="A3I9S2YIE3VFZA3SANF4Q8POG7" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="A3I9S2YIE3VFZA3SANF4Q8POG7_F" sap:updatable="false" sap:label="Number of Records" sap:creatable="false"/>
+                <Property Name="A3I9S2YIE3VFZA3SANF4Q8POG7_F" Type="Edm.String" MaxLength="60" sap:label="Number of Records (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Parameters" Relationship="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004ParametersToResult" FromRole="ToRole_ZPLT_M01_Q0004ParametersToResult" ToRole="FromRole_ZPLT_M01_Q0004ParametersToResult"/>
+            </EntityType>
+            <EntityType Name="ZPLT_M01_Q0004Parameters" sap:semantics="parameters" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZVAR_STATE"/>
+                </Key>
+                <Property Name="ZVAR_STATE" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Dealer State" sap:parameter="optional" sap:text="ZVAR_STATEText" sap:sortable="false"/>
+                <Property Name="ZVAR_STATEText" Type="Edm.String" MaxLength="60" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ZVAR_STATEDetails" Relationship="ZPLT_M01_Q0004_SRV.ZVAR_STATEToListOfValues" FromRole="ToRole_ZVAR_STATEToListOfValues" ToRole="FromRole_ZVAR_STATEToListOfValues"/>
+                <NavigationProperty Name="Results" Relationship="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004ParametersToResult" FromRole="FromRole_ZPLT_M01_Q0004ParametersToResult" ToRole="ToRole_ZPLT_M01_Q0004ParametersToResult"/>
+            </EntityType>
+            <EntityType Name="ZVAR_STATE" sap:label="Dealer State" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZVAR_STATE_ID"/>
+                </Key>
+                <Property Name="ZVAR_STATE_ID" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Dealer State" sap:sortable="false" sap:text="ZVAR_STATE_TEXT" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ZVAR_STATE_TEXT" Type="Edm.String" sap:sortable="false" sap:label="Dealer State (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ODataQueryAdditionalMetadata" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ODataQueryMetadata"/>
+                </Key>
+                <Property Name="ODataQueryMetadata" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValue_Current" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValueAtDefine" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ZVAR_STATEToListOfValues" sap:content-version="1">
+                <End Type="ZPLT_M01_Q0004_SRV.ZVAR_STATE" Multiplicity="1" Role="FromRole_ZVAR_STATEToListOfValues"/>
+                <End Type="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004Parameters" Multiplicity="*" Role="ToRole_ZVAR_STATEToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ZVAR_STATEToListOfValues">
+                        <PropertyRef Name="ZVAR_STATE_ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ZVAR_STATEToListOfValues">
+                        <PropertyRef Name="ZVAR_STATE"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ZPLT_M01_Q0004ParametersToResult" sap:content-version="1">
+                <End Type="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004Parameters" Multiplicity="1" Role="FromRole_ZPLT_M01_Q0004ParametersToResult"/>
+                <End Type="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004Result" Multiplicity="*" Role="ToRole_ZPLT_M01_Q0004ParametersToResult"/>
+            </Association>
+            <EntityContainer Name="ZPLT_M01_Q0004_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="AdditionalMetadata" EntityType="ZPLT_M01_Q0004_SRV.ODataQueryAdditionalMetadata" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZPLT_M01_Q0004Results" EntityType="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004Result" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZPLT_M01_Q0004" EntityType="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004Parameters" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZVAR_STATE" EntityType="ZPLT_M01_Q0004_SRV.ZVAR_STATE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="ZPLT_M01_Q0004ParametersToResult_AssocSe" Association="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004ParametersToResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZPLT_M01_Q0004" Role="FromRole_ZPLT_M01_Q0004ParametersToResult"/>
+                    <End EntitySet="ZPLT_M01_Q0004Results" Role="ToRole_ZPLT_M01_Q0004ParametersToResult"/>
+                </AssociationSet>
+                <AssociationSet Name="ZVAR_STATEToListOfValues_AssocSet" Association="ZPLT_M01_Q0004_SRV.ZVAR_STATEToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZVAR_STATE" Role="FromRole_ZVAR_STATEToListOfValues"/>
+                    <End EntitySet="ZPLT_M01_Q0004" Role="ToRole_ZVAR_STATEToListOfValues"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPLT_M01_Q0004_SRV.ZPLT_M01_Q0004Parameters/ZVAR_STATE">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Dealer State"/>
+                        <PropertyValue Property="CollectionPath" String="ZVAR_STATE"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ZVAR_STATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="ZVAR_STATE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ZVAR_STATE_TEXT"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPLT_M01_Q0004_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPLT_M01_Q0004_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

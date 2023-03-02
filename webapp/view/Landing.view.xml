@@ -1,0 +1,147 @@
+<mvc:View controllerName="zAfterMarket.controller.Landing" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m">
+	<App>
+		<pages>
+			<Page showHeader="true">
+				<customHeader>
+					<Bar>
+						<contentLeft>
+							<Image src="util/logo.png" class="logoCss"></Image>
+						</contentLeft>
+						<contentMiddle>
+							<Title text="After Active Population (for last 8 years - Apr 2014 to Mar 2022)"></Title>
+						</contentMiddle>
+						<contentRight>
+							<Button id="idSubmitBtn" text="Submit" type="Accept"></Button>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<Bar>
+					<contentMiddle>
+						<Label text="Region : " labelFor="ComboBox"></Label>
+						<ComboBox id="ComboBox" required="true" items="{/ZPLT_M01_Q0002Results}" width="200px" change="onComboBoxChange">
+							<items>
+								<core:Item key="{ZREGNGRP}" text="{ZREGNGRP_T}"/>
+							</items>
+						</ComboBox>
+						<Label text="State : " labelFor="MultiComboBox1"></Label>
+						<MultiComboBox id="MultiComboBox1" items="{/results}" width="200px" selectionFinish="handleSelectionFinishMcb1" showSelectAll="true">
+							<items>
+								<core:Item key="{A0REGION}" text="{A0REGION}-{A0REGION_T}"/>
+							</items>
+						</MultiComboBox>
+						<Label text="Dealer Code : " labelFor="MultiComboBox2"></Label>
+						<MultiComboBox id="MultiComboBox2" items="{/results}" width="200px" selectionFinish="handleSelectionFinish" showSelectAll="true">
+							<items>
+								<core:Item key="{A0PLANT}" text="{A0PLANT} - {A0PLANT_T}"/>
+							</items>
+						</MultiComboBox>
+						<Button id="idProceedBtn" text="Proceed" type="Accept" class="Btncss" press="onPressProceed"></Button>
+					</contentMiddle>
+				</Bar>
+				<t:Table id="idEmpTab" visibleRowCount="5" selectionMode="Single" rows="{/results}">
+					<t:columns>
+						<t:Column>
+							<t:multiLabels >
+								<Label/>
+								<Label text="Type" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{A0PLANT__ZDLR_TYPE_T}"/>
+							</t:template>
+						</t:Column>
+						<t:Column>
+							<t:multiLabels >
+								<Label/>
+								<Label text="Plant" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{A0PLANT}"/>
+							</t:template>
+						</t:Column>
+						<t:Column>
+							<t:multiLabels >
+								<Label/>
+								<Label text="City" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{A0PLANT__0CITY40}"/>
+							</t:template>
+						</t:Column>
+						<t:Column>
+							<t:multiLabels >
+								<Label/>
+								<Label text="Dealership Name" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{A0PLANT_T}"/>
+							</t:template>
+						</t:Column>
+						<t:Column>
+							<t:multiLabels >
+								<Label/>
+								<Label text="No. of Bays" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{A0PLANT__ZBAY}"/>
+							</t:template>
+						</t:Column>
+						<t:Column>
+							<t:multiLabels >
+								<Label/>
+								<Label text="No. of JobCard" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{NO_OF_JOB_CARDS}"/>
+							</t:template>
+						</t:Column>
+						<t:Column headerSpan="3">
+							<t:multiLabels >
+								<Label text="Active Population" class="columnTextCss" textAlign="Center" width="100%"/>
+								<Label text="HD" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{ACTIVE_POPU_HD}"/>
+							</t:template>
+						</t:Column>
+						<t:Column headerSpan="3">
+							<t:multiLabels>
+								<Label text="Active Population" textAlign="Center" width="100%"/>
+								<Label text="LMD" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{ACTIVE_POPU_LMD}"/>
+							</t:template>
+						</t:Column>
+						<t:Column headerSpan="3">
+							<t:multiLabels>
+								<Label text="Active Population" textAlign="Center" width="100%"/>
+								<Label text="BUS" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{ACTIVE_POPU_BUS}"/>
+							</t:template>
+						</t:Column>
+						<t:Column>
+							<t:multiLabels >
+								<Label/>
+								<Label text="Service Mkt Share" textAlign="Center" width="100%"/>
+							</t:multiLabels>
+							<t:template>
+								<Text text="{SERVICE_MARKET_SHARE}"/>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			
+					<BusyDialog id="BusyDialog"/>
+			
+				<Carousel class="sapUiContentPadding" loop="true">
+					<Image src="util/tractorgyan.jpg" alt="Example picture of tractor"/>
+					<Image src="util/Eicher-Motors.jpg" alt="Example picture truck"/>
+					<Image src="util/rsz_eicher_trucks.jpg" alt="Example picture of new truck"/>
+				</Carousel>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

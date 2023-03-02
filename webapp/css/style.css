@@ -1,0 +1,67 @@
+/* Enter your custom styles here */
+.logoCss {
+    height: 60px !important;
+    vertical-align: middle !important;
+    width: 170px !important;
+    margin-left: 0.125em !important;
+    margin-top: -1px !important;
+}
+.sapMIBar-CTX .sapMLabel {
+    color: #040404 !important;
+}
+.sapMLabel {
+    color: #666666;
+    font-size: 0.rem !important;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold !important;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: text;
+}
+.sapMIBar-CTX .sapMTitle {
+    color: #0961aa !important;
+    text-shadow: 0 0 0.125rem #ffffff;
+}
+.sapMTitleStyleAuto {
+    font-size: large !important;
+}
+.sapMTitle {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    font-weight: bold !important;
+    color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: text;
+    text-shadow: 0 0 0.125rem #ffffff;
+}
+.sapMBtnInner {
+    border-radius: 100px !important;
+}
+.Btncss .sapMBtnInner{
+	background-color: #346187 !important;
+	color: #fafafa !important;
+}
+.sapCarousel {
+	max-height: 50% !important;
+}
+.sapMCrslItemTableCell {
+    height: max-content !important;
+}
+.columnTextCss{
+   color: #faf6f6 !important;
+    background-color: #05345c !important;
+}
+
+
+
+

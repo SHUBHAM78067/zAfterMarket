@@ -1,0 +1,105 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='GW_BW_TRUST')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPLT_M01_Q0003_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ZPLT_M01_Q0003Result" sap:label="SER: Active Population State UI(5)" sap:semantics="aggregate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:filterable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TotaledProperties" Type="Edm.String" sap:aggregation-role="totaled-properties-list" sap:is-annotation="true" sap:updatable="false" sap:label="Total/Subtotal" sap:sortable="false"/>
+                <Property Name="A0REGION" Type="Edm.String" MaxLength="7" sap:aggregation-role="dimension" sap:text="A0REGION_T" sap:label="State" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0REGION_T" Type="Edm.String" MaxLength="20" sap:label="State (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="A3I9S2YIE3VFZA3S9OLDZP18OT" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="A3I9S2YIE3VFZA3S9OLDZP18OT_F" sap:updatable="false" sap:label="Number of Records" sap:creatable="false"/>
+                <Property Name="A3I9S2YIE3VFZA3S9OLDZP18OT_F" Type="Edm.String" MaxLength="60" sap:label="Number of Records (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Parameters" Relationship="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003ParametersToResult" FromRole="ToRole_ZPLT_M01_Q0003ParametersToResult" ToRole="FromRole_ZPLT_M01_Q0003ParametersToResult"/>
+            </EntityType>
+            <EntityType Name="ZPLT_M01_Q0003Parameters" sap:semantics="parameters" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZVAR_REGION"/>
+                </Key>
+                <Property Name="ZVAR_REGION" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Dealer Region" sap:parameter="optional" sap:text="ZVAR_REGIONText" sap:sortable="false"/>
+                <Property Name="ZVAR_REGIONText" Type="Edm.String" MaxLength="60" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ZVAR_REGIONDetails" Relationship="ZPLT_M01_Q0003_SRV.ZVAR_REGIONToListOfValues" FromRole="ToRole_ZVAR_REGIONToListOfValues" ToRole="FromRole_ZVAR_REGIONToListOfValues"/>
+                <NavigationProperty Name="Results" Relationship="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003ParametersToResult" FromRole="FromRole_ZPLT_M01_Q0003ParametersToResult" ToRole="ToRole_ZPLT_M01_Q0003ParametersToResult"/>
+            </EntityType>
+            <EntityType Name="ZVAR_REGION" sap:label="Dealer Region" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZVAR_REGION_ID"/>
+                </Key>
+                <Property Name="ZVAR_REGION_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Dealer Region" sap:sortable="false" sap:text="ZVAR_REGION_TEXT" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ZVAR_REGION_TEXT" Type="Edm.String" sap:sortable="false" sap:label="Dealer Region (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ODataQueryAdditionalMetadata" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ODataQueryMetadata"/>
+                </Key>
+                <Property Name="ODataQueryMetadata" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValue_Current" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValueAtDefine" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ZPLT_M01_Q0003ParametersToResult" sap:content-version="1">
+                <End Type="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003Parameters" Multiplicity="1" Role="FromRole_ZPLT_M01_Q0003ParametersToResult"/>
+                <End Type="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003Result" Multiplicity="*" Role="ToRole_ZPLT_M01_Q0003ParametersToResult"/>
+            </Association>
+            <Association Name="ZVAR_REGIONToListOfValues" sap:content-version="1">
+                <End Type="ZPLT_M01_Q0003_SRV.ZVAR_REGION" Multiplicity="1" Role="FromRole_ZVAR_REGIONToListOfValues"/>
+                <End Type="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003Parameters" Multiplicity="*" Role="ToRole_ZVAR_REGIONToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ZVAR_REGIONToListOfValues">
+                        <PropertyRef Name="ZVAR_REGION_ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ZVAR_REGIONToListOfValues">
+                        <PropertyRef Name="ZVAR_REGION"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPLT_M01_Q0003_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="AdditionalMetadata" EntityType="ZPLT_M01_Q0003_SRV.ODataQueryAdditionalMetadata" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZPLT_M01_Q0003Results" EntityType="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003Result" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZPLT_M01_Q0003" EntityType="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003Parameters" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZVAR_REGION" EntityType="ZPLT_M01_Q0003_SRV.ZVAR_REGION" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="ZVAR_REGIONToListOfValues_AssocSet" Association="ZPLT_M01_Q0003_SRV.ZVAR_REGIONToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZVAR_REGION" Role="FromRole_ZVAR_REGIONToListOfValues"/>
+                    <End EntitySet="ZPLT_M01_Q0003" Role="ToRole_ZVAR_REGIONToListOfValues"/>
+                </AssociationSet>
+                <AssociationSet Name="ZPLT_M01_Q0003ParametersToResult_AssocSe" Association="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003ParametersToResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZPLT_M01_Q0003" Role="FromRole_ZPLT_M01_Q0003ParametersToResult"/>
+                    <End EntitySet="ZPLT_M01_Q0003Results" Role="ToRole_ZPLT_M01_Q0003ParametersToResult"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZPLT_M01_Q0003_SRV.ZPLT_M01_Q0003Parameters/ZVAR_REGION">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Dealer Region"/>
+                        <PropertyValue Property="CollectionPath" String="ZVAR_REGION"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ZVAR_REGION"/>
+                                    <PropertyValue Property="ValueListProperty" String="ZVAR_REGION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ZVAR_REGION_TEXT"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPLT_M01_Q0003_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPLT_M01_Q0003_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

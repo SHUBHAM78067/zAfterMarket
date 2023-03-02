@@ -1,0 +1,119 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='BWD_UDAAN')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSER_CP01_Q0001_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ZSER_CP01_Q0001Result" sap:label="SER: Active Population Data (Dealer ScoreCard)" sap:semantics="aggregate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:filterable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TotaledProperties" Type="Edm.String" sap:aggregation-role="totaled-properties-list" sap:is-annotation="true" sap:updatable="false" sap:label="Total/Subtotal" sap:sortable="false"/>
+                <Property Name="A0PLANT__ZREGNGRP" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Region" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0PLANT__0REGION" Type="Edm.String" MaxLength="7" sap:aggregation-role="dimension" sap:text="A0PLANT__0REGION_T" sap:label="State" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0PLANT__0REGION_T" Type="Edm.String" MaxLength="20" sap:label="State (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="A0PLANT__0CITY40" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="City" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0PLANT__ZDLR_TYPE_T" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:text="" sap:label="Dealer Type" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="A0PLANT" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:text="A0PLANT_T" sap:label="Plant" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="A0PLANT_T" Type="Edm.String" MaxLength="20" sap:label="Plant (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="A0PLANT__ZBAY" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Bay" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="NO_OF_JOB_CARDS" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="NO_OF_JOB_CARDS_F" sap:updatable="false" sap:label="Job Card Count" sap:creatable="false"/>
+                <Property Name="NO_OF_JOB_CARDS_F" Type="Edm.String" MaxLength="60" sap:label="Job Card Count (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ACTIVE_POPU_BUS" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="ACTIVE_POPU_BUS_F" sap:updatable="false" sap:label="BUS Population" sap:creatable="false"/>
+                <Property Name="ACTIVE_POPU_BUS_F" Type="Edm.String" MaxLength="60" sap:label="BUS Population (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ACTIVE_POPU_LMD" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="ACTIVE_POPU_LMD_F" sap:updatable="false" sap:label="LMD Population" sap:creatable="false"/>
+                <Property Name="ACTIVE_POPU_LMD_F" Type="Edm.String" MaxLength="60" sap:label="LMD Population (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ACTIVE_POPU_HD" Type="Edm.Decimal" Precision="42" Scale="0" sap:aggregation-role="measure" sap:filterable="false" sap:text="ACTIVE_POPU_HD_F" sap:updatable="false" sap:label="HD Population" sap:creatable="false"/>
+                <Property Name="ACTIVE_POPU_HD_F" Type="Edm.String" MaxLength="60" sap:label="HD Population (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="SERVICE_MARKET_SHARE" Type="Edm.Decimal" Precision="42" Scale="1" sap:aggregation-role="measure" sap:filterable="false" sap:text="SERVICE_MARKET_SHARE_F" sap:updatable="false" sap:label="Service Market Share" sap:creatable="false"/>
+                <Property Name="SERVICE_MARKET_SHARE_F" Type="Edm.String" MaxLength="60" sap:label="Service Market Share (Formatted)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Parameters" Relationship="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001ParametersToResult" FromRole="ToRole_ZSER_CP01_Q0001ParametersToResult" ToRole="FromRole_ZSER_CP01_Q0001ParametersToResult"/>
+            </EntityType>
+            <EntityType Name="ZSER_CP01_Q0001Parameters" sap:semantics="parameters" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZV_MONTH"/>
+                </Key>
+                <Property Name="ZV_MONTH" Type="Edm.String" Nullable="false" MaxLength="7" sap:label="Calendar Month" sap:parameter="mandatory" sap:text="ZV_MONTHText" sap:sortable="false"/>
+                <Property Name="ZV_MONTHText" Type="Edm.String" MaxLength="60" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ZV_MONTHDetails" Relationship="ZSER_CP01_Q0001_SRV.ZV_MONTHToListOfValues" FromRole="ToRole_ZV_MONTHToListOfValues" ToRole="FromRole_ZV_MONTHToListOfValues"/>
+                <NavigationProperty Name="Results" Relationship="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001ParametersToResult" FromRole="FromRole_ZSER_CP01_Q0001ParametersToResult" ToRole="ToRole_ZSER_CP01_Q0001ParametersToResult"/>
+            </EntityType>
+            <EntityType Name="ZV_MONTH" sap:label="Calendar Month" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZV_MONTH_ID"/>
+                </Key>
+                <Property Name="ZV_MONTH_ID" Type="Edm.String" Nullable="false" MaxLength="7" sap:label="Calendar Month" sap:sortable="false" sap:text="ZV_MONTH_TEXT" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ZV_MONTH_TEXT" Type="Edm.String" sap:sortable="false" sap:label="Calendar Month (Description)" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ODataQueryAdditionalMetadata" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ODataQueryMetadata"/>
+                </Key>
+                <Property Name="ODataQueryMetadata" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValue_Current" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ODataQueryMetadataValueAtDefine" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ZSER_CP01_Q0001ParametersToResult" sap:content-version="1">
+                <End Type="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001Parameters" Multiplicity="1" Role="FromRole_ZSER_CP01_Q0001ParametersToResult"/>
+                <End Type="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001Result" Multiplicity="*" Role="ToRole_ZSER_CP01_Q0001ParametersToResult"/>
+            </Association>
+            <Association Name="ZV_MONTHToListOfValues" sap:content-version="1">
+                <End Type="ZSER_CP01_Q0001_SRV.ZV_MONTH" Multiplicity="1" Role="FromRole_ZV_MONTHToListOfValues"/>
+                <End Type="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001Parameters" Multiplicity="*" Role="ToRole_ZV_MONTHToListOfValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ZV_MONTHToListOfValues">
+                        <PropertyRef Name="ZV_MONTH_ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ZV_MONTHToListOfValues">
+                        <PropertyRef Name="ZV_MONTH"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZSER_CP01_Q0001_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="AdditionalMetadata" EntityType="ZSER_CP01_Q0001_SRV.ODataQueryAdditionalMetadata" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZSER_CP01_Q0001Results" EntityType="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001Result" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZSER_CP01_Q0001" EntityType="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001Parameters" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZV_MONTH" EntityType="ZSER_CP01_Q0001_SRV.ZV_MONTH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="ZV_MONTHToListOfValues_AssocSet" Association="ZSER_CP01_Q0001_SRV.ZV_MONTHToListOfValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZV_MONTH" Role="FromRole_ZV_MONTHToListOfValues"/>
+                    <End EntitySet="ZSER_CP01_Q0001" Role="ToRole_ZV_MONTHToListOfValues"/>
+                </AssociationSet>
+                <AssociationSet Name="ZSER_CP01_Q0001ParametersToResult_AssocS" Association="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001ParametersToResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZSER_CP01_Q0001" Role="FromRole_ZSER_CP01_Q0001ParametersToResult"/>
+                    <End EntitySet="ZSER_CP01_Q0001Results" Role="ToRole_ZSER_CP01_Q0001ParametersToResult"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSER_CP01_Q0001_SRV.ZSER_CP01_Q0001Parameters/ZV_MONTH">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Calendar Month"/>
+                        <PropertyValue Property="CollectionPath" String="ZV_MONTH"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ZV_MONTH"/>
+                                    <PropertyValue Property="ValueListProperty" String="ZV_MONTH_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ZV_MONTH_TEXT"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZSER_CP01_Q0001_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZSER_CP01_Q0001_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
